@@ -1,5 +1,9 @@
 from itertools import cycle
 from numpy.random import randint,choice
+
+import time
+
+
 import sys
 
 
@@ -14,7 +18,7 @@ PIPEGAPSIZE  = 160 # gap between upper and lower part of pipe
 BASEY        = SCREENHEIGHT * 0.79
 SCORE = 0
 
-BACKGROUND = pygame.image.load('/home/roshan/Documents/FlappyBird/background.png')
+BACKGROUND = pygame.image.load('background.png')
 
 
 class Bird(pygame.sprite.Sprite):
@@ -23,7 +27,7 @@ class Bird(pygame.sprite.Sprite):
 
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = pygame.image.load('/home/roshan/Documents/FlappyBird/redbird.png')
+        self.image = pygame.image.load('redbird.png')
 
         self.x = int(SCREENWIDTH * 0.2)
         self.y = SCREENHEIGHT*0.5
@@ -86,8 +90,8 @@ class Pipe(pygame.sprite.Sprite):
 		pygame.sprite.Sprite.__init__(self)
 
 		self.screen = screen
-		self.lowerBlock = PipeBlock('/home/roshan/Documents/FlappyBird/pipe-red.png',False)
-		self.upperBlock = PipeBlock('/home/roshan/Documents/FlappyBird/pipe-red.png',True)
+		self.lowerBlock = PipeBlock('pipe-red.png',False)
+		self.upperBlock = PipeBlock('pipe-red.png',True)
 		
 
 		self.pipeWidth = self.upperBlock.rect.width
@@ -135,12 +139,6 @@ class Pipe(pygame.sprite.Sprite):
 
 		self.display()
 		return([self.x+(self.pipeWidth/2), self.upperY, self.lowerY])
-
-
-
-
-
-
 
 
 
@@ -195,7 +193,6 @@ def game():
 			return(SCORE)
 			
 
-		
 		for event in pygame.event.get():
 			if event.type == QUIT or (event.type == KEYDOWN and (event.key == K_ESCAPE )):
 				pygame.quit()
@@ -212,21 +209,44 @@ def game():
 		else:
 			moved = False
 
+
+		# if pipe1.x < pipe2.x and pipe1.x > bird.x :
+		# 		next_pipe = pipe1
+
+		# elif pipe2.x > bird.x :
+		# 		next_pipe = pipe2
+
+		# else : 
+		# 	next_pipe = pipe1
+
+		# print("next_pipe")
+		# print(next_pipe.x)
+
+		# print("Bird position :")
+		# print(bird.y)
+
+		# print("Y")
+		# print(pipe1.lowerY)
+
+		# print("Center of pipes :")
+		# print(abs(int((pipe1.lowerY - pipe1.upperY)*0.5)) + pipe1.upperY)
+
 		
 		pipe1Pos = pipe1.move()
 		if pipe1Pos[0] <= int(SCREENWIDTH * 0.2) - int(bird.rect.width/2):
 			if pipe1.behindBird == 0:
 				pipe1.behindBird = 1
 				SCORE += 1
-				print("SCORE IS %d"%SCORE)
+				#print("SCORE IS %d"%SCORE)
 
 		pipe2Pos = pipe2.move()
 		if pipe2Pos[0] <= int(SCREENWIDTH * 0.2) - int(bird.rect.width/2):
 			if pipe2.behindBird == 0:
 				pipe2.behindBird = 1
 				SCORE += 1
-				print("SCORE IS %d"%SCORE)
+				#print("SCORE IS %d"%SCORE)
 		
+		# time.sleep(0.1)
 		
 
 		if pause==0:
@@ -240,5 +260,9 @@ def game():
 
 
 
-game()
+if __name__ == "__main__" : 
+
+	game()
+
+
 
