@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from itertools import cycle
 from numpy.random import randint,choice
 
@@ -255,7 +257,7 @@ def observe(Mem):
 				#print("flapping? ", b_flap)
 				#print("counter = ", cnt)
 
-				reward = cnt #pas de problème de sparse reward en soit
+				reward = cnt #pas de probleme de sparse reward en soit
 
 				#move world
 				if b_flap == True :
@@ -675,7 +677,7 @@ if __name__ == "__main__" :
 
 ##notes 
 
-##il est probable qu'il soit nécessaire de fine tuner quelques hypers paramètres
+##il est probable qu'il soit necessaire de fine tuner quelques hypers parametres
 ##resultat grid search learning rate :
 
 
