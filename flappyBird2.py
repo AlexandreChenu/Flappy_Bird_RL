@@ -209,6 +209,10 @@ def game():
 		else:
 			moved = False
 
+		#print("x ", bird.x)
+		#print("y ", bird.y)
+		#print("pipe ")
+
 
 		# if pipe1.x < pipe2.x and pipe1.x > bird.x :
 		# 		next_pipe = pipe1
